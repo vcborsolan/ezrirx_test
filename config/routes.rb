@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :users, param: :username
   post '/auth/login', to: 'authentication#login'
   get '/*a', to: 'appllication#not_found'
+  resources :seller_product
+  get '/', to: 'buyer#index'
+  get '/products', to: 'product#index'
 end
