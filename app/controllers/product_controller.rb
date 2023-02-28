@@ -1,4 +1,4 @@
-class BuyerController < ApplicationController
+class ProductController < ApplicationController
     before_action :authorize_request
     before_action :ensure_only_sellers
 
