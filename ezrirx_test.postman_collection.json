@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "22655bac-f11f-4464-8e84-064cbb4d3be6",
+		"name": "Ezrirx test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24183663"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "victor orsolan",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vcborsolan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "abc123!@#",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "abc123!@#",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "new york",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "seller",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://tranquil-stream-66380.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"tranquil-stream-66380",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login (generate jwt token)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "vcborsolan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "abc123!@#",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://tranquil-stream-66380.herokuapp.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"tranquil-stream-66380",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2Nzc2MTIwODh9.mPXwK7KoZo-_Yq9cDiXKNcEJ52nm-EiJHcisLrrrAsA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List buyable products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2Nzc2Nzg3ODR9.fC27i5X-ijMHYvlgazS3EARxUZt99x_M58ORNdba15g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://tranquil-stream-66380.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"tranquil-stream-66380",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seller index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2Nzc2Nzg3ODR9.fC27i5X-ijMHYvlgazS3EARxUZt99x_M58ORNdba15g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://tranquil-stream-66380.herokuapp.com/seller_product",
+					"protocol": "https",
+					"host": [
+						"tranquil-stream-66380",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"seller_product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

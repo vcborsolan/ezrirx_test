@@ -13,3 +13,19 @@ You are free to use any gems and DB to get the job done. Writting tests is requi
 
 
 Add bellow instructions to run, how to deploy it, where to consume it (heroku link), what where the decisions and whys.
+
+It was made a rails 7 backend api only.
+
+About the user roles and authentication, it was decided to use JWT token and user -> seller or buyer STI. It was created some examples of postman requests which it can be imported from the file ezrirx_test.postman_collection.json
+
+A buyer can only get buyer index, in case of a seller trying to request buyer index AKA root, it will be redirected to seller index. The seller product controller (the controller which a seller can CRUD on samples of products) also validates if the current user is a seller, otherwise it will be forbiden the usage.
+
+For buyers the index filters by user state, based on a model method.
+
+If a seller would like to create a new selling product, first he has to get product_controller#index to get the list of products.
+
+It was created minimun seeds for usage, not having the possibility of creating a base product is proposital.
+
+A user need to have at least a valid us state, his username has to be unique, an have at least 6 to 32 characters. It also has to have a unique valid email.
+
+The project was deployed in heroku and the app can be accessed on: https://tranquil-stream-66380.herokuapp.com/
