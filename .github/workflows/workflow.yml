@@ -37,7 +37,7 @@ jobs:
       run: bundle exec rubocop
 
     - name: RSpec
-      run: bundle exec rspec
+      run: bundle exec rspec --full-index
 
     - name: Deploy to Heroku
       if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
