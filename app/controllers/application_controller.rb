@@ -17,6 +17,6 @@ class ApplicationController < ActionController::API
   end
 
   def ensure_only_sellers    
-      render json: { error: 'Access denied'}, status: :unauthorized if @current_user.type == "buyer"
+      render json: { error: 'Access denied'}, status: :unauthorized if @current_user.type == 'buyer'
   end
 end

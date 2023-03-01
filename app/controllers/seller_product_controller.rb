@@ -15,7 +15,7 @@ class SellerProductController < ApplicationController
         @seller_product.seller = @current_user
     
         if @seller_product.save
-          redirect_to seller_product_path, notice: "Seller product was successfully created."
+          redirect_to seller_product_path, notice: 'Seller product was successfully created.'
         else
           render :new
         end
@@ -29,7 +29,7 @@ class SellerProductController < ApplicationController
         @seller_product = @current_user.seller_products.find(params[:id])
 
         if @seller_product.update(seller_product_params)
-            redirect_to seller_product_path, notice: "Seller product was successfully updated."
+            redirect_to seller_product_path, notice: 'Seller product was successfully updated.'
         else
             render :edit
         end
@@ -39,7 +39,7 @@ class SellerProductController < ApplicationController
         @seller_product = @current_user.seller_products.find(params[:id])
         @seller_product.destroy
     
-        redirect_to seller_product_path, notice: "Seller product was successfully deleted."
+        redirect_to seller_product_path, notice: 'Seller product was successfully deleted.'
     end
     
     private
