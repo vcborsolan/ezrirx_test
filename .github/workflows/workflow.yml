@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.0
+
+    - name: Cache Ruby gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle install --jobs 4 --retry 3
+
+    - name: Run Rubocop
+      uses: ruby/rd-toolkit@v1
+      with:
+        command: rubocop
+      env:
+        RUBOCOP_TODO_FILE: ''
+
+    - name: Run RSpec
+      uses: ruby/rd-toolkit@v1
+      with:
+        command: rspec
+      env:
+        RAILS_ENV: test
+
+    - name: Deploy to Heroku
+      if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |
+        git remote add heroku https://git.heroku.com/tranquil-stream-66380.git
+        git push -f heroku main
