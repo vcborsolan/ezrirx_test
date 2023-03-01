@@ -33,19 +33,11 @@ jobs:
         bundle config set path 'vendor/bundle'
         bundle install --jobs 4 --retry 3
 
-    - name: Run Rubocop
-      uses: ruby/rd-toolkit@v1
-      with:
-        command: rubocop
-      env:
-        RUBOCOP_TODO_FILE: ''
+    - name: Rubocop
+      run: bundle exec rubocop
 
-    - name: Run RSpec
-      uses: ruby/rd-toolkit@v1
-      with:
-        command: rspec
-      env:
-        RAILS_ENV: test
+    - name: RSpec
+      run: bundle exec rspec
 
     - name: Deploy to Heroku
       if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
