@@ -4,5 +4,6 @@ FactoryBot.define do
       password { 'password' }
       sequence(:email) { Faker::Internet.email }
       state { Faker::Address.state }
+      type { 'buyer' }
     end
 end
