@@ -98,31 +98,6 @@
 			"response": []
 		},
 		{
-			"name": "List users",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2Nzc2MTIwODh9.mPXwK7KoZo-_Yq9cDiXKNcEJ52nm-EiJHcisLrrrAsA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "List buyable products",
 			"request": {
 				"method": "GET",
