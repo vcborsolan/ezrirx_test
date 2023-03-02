@@ -39,6 +39,8 @@ gem 'bootsnap', require: false
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'simplecov', require: false, group: :test
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'pry-rails'
@@ -47,6 +49,7 @@ group :development, :test do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
