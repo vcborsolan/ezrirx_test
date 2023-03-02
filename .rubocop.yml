@@ -202,9 +202,10 @@ Metrics/LineLength:
     - 'db/seeds.rb'
 
 Metrics/BlockLength:
-  Max: 29
+  Max: 45
   Exclude:
   - 'spec/controllers/product_controller_spec.rb'
+  - 'spec/controllers/seller_product_controller_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns.

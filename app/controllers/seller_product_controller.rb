@@ -1,50 +1,46 @@
 class SellerProductController < ApplicationController
     before_action :authorize_request
     before_action :ensure_only_sellers
+    before_action :block_cross_seller_update, only: %i[update destroy]
 
     def index
         @seller_products = @current_user.seller_products
     end
 
-    def new
-        @seller_product = SellerProduct.new
-    end
-
     def create
         @seller_product = SellerProduct.new(seller_product_params)
-        @seller_product.seller = @current_user
+        @seller_product.user_id = @current_user.id
     
         if @seller_product.save
-          redirect_to seller_product_path, notice: 'Seller product was successfully created.'
+          render json: @seller_product, status: :created
         else
-          render :new
+          render json: { error: @seller_product.errors.full_messages }, status: :unprocessable_entity
         end
-    end
-    
-    def edit
-        @seller_product = @current_user.seller_products.find(params[:id])
     end
 
     def update
-        @seller_product = @current_user.seller_products.find(params[:id])
-
         if @seller_product.update(seller_product_params)
-            redirect_to seller_product_path, notice: 'Seller product was successfully updated.'
+            redirect_to seller_product_path
         else
-            render :edit
+            render json: @seller_product.errors.full_messages, status: :unprocessable_entity
         end
     end
 
     def destroy
-        @seller_product = @current_user.seller_products.find(params[:id])
         @seller_product.destroy
     
-        redirect_to seller_product_path, notice: 'Seller product was successfully deleted.'
+        render json: { notice: 'Seller product was successfully deleted.' }, status: :ok
     end
     
     private
     
     def seller_product_params
         params.require(:seller_product).permit(:product_id, :price, :quantity)
+    end
+
+    def block_cross_seller_update
+        target = SellerProduct.find(params[:id])
+        render json: { error: 'Access denied' }, status: :unauthorized if target.user_id != @current_user.id
+        @seller_product = target
     end
 end

@@ -5,18 +5,18 @@ RSpec.describe BuyerController, type: :controller do
     context 'when user is a buyer' do
       let(:buyer) { FactoryBot.create(:buyer, state: 'California') }
       let(:buyer_token) { JsonWebToken.encode(user_id: buyer.id) }
-      let!(:product1) { 
+      let!(:product1) do
         FactoryBot.create(:seller_product, price: 10,
-             user_id: FactoryBot.create(:seller, state: 'California').id)
-             }
-      let!(:product2) { 
+                                           user_id: FactoryBot.create(:seller, state: 'California').id)
+      end
+      let!(:product2) do
         FactoryBot.create(:seller_product, price: 20,
-             user_id: FactoryBot.create(:seller, state: 'California').id) 
-            }
-      let!(:product3) { 
+                                           user_id: FactoryBot.create(:seller, state: 'California').id)
+      end
+      let!(:product3) do
         FactoryBot.create(:seller_product, price: 30,
-             user_id: FactoryBot.create(:seller, state: 'New York').id)
-             }
+                                           user_id: FactoryBot.create(:seller, state: 'New York').id)
+      end
 
       before do
         request.headers['Authorization'] = "Bearer #{buyer_token}"
