@@ -4,6 +4,6 @@ class BuyerController < ApplicationController
     def index
         return redirect_to seller_product_index_path if @current_user.type == 'seller'
         @products = SellerProduct.by_seller_state(@current_user.state).order(price: :asc)
-        render json: @products, status: :success
+        render json: @products, status: :ok
     end
 end

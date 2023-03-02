@@ -1,9 +1,9 @@
 class SellerProduct < ApplicationRecord
-  belongs_to :user
+  belongs_to :seller, foreign_key: 'user_id'
   belongs_to :product
 
   def self.by_seller_state(state)
     joins(:seller)
-      .where(sellers: { state: state })
+      .where(seller: { state: state })
   end
 end
