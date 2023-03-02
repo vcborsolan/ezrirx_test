@@ -15,6 +15,8 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false },length: { minimum: 4, maximum: 254 }
     validate :us_state_validator
 
+    has_many :seller_products
+
     self.inheritance_column = :_type_disabled
     
     def us_state_validator
